@@ -1,0 +1,78 @@
+.section-third{
+    width: 100%;
+    height:90rem;
+    padding: 3rem 20rem;
+    color: black;
+    background-color:#ccdbfd ;
+}
+
+.section-third h2{
+    font-size: 5.5rem;
+    margin-bottom: 5rem;
+   
+    margin-top: 3rem;
+    margin-left: 5rem;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.section-third p{
+   
+    width: 25rem;
+    height: 6rem;
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 10rem;
+}
+
+.section-third .section-third-task{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 4rem;
+}
+
+.section-third .section-third-task .task-1,
+.section-third .section-third-task .task-2,
+.section-third .section-third-task .task-3{
+
+    padding-top: 10rem;
+    background: #abc4ff;
+    text-align: center;
+    transition: all 0.3s linear;
+    border-radius: 2rem;
+
+}
+
+.section-third .section-third-task .task-1 h3,
+.section-third .section-third-task .task-2 h3,
+.section-third .section-third-task .task-3 h3{
+    font-size: 3.2rem;
+    
+    text-transform: capitalize;
+    margin-top: 2rem;
+}
+
+.section-third .section-third-task .task-1 img,
+.section-third .section-third-task .task-2 img,
+.section-third .section-third-task .task-3 img{
+    width: 20rem;
+    height: 20rem;
+    transition: all 0.3s;
+}
+
+
+.section-third .section-third-task .task-1:hover,
+.section-third .section-third-task .task-2:hover,
+.section-third .section-third-task .task-3:hover{
+    background:#2a6f97;
+    box-shadow: 0rem 0.4rem 2rem rgba(35,52,53,0.25);
+}
+
+
+.section-third .section-third-task .task-1:hover > img,
+.section-third .section-third-task .task-2:hover > img,
+.section-third .section-third-task .task-3:hover > img{
+    transform: rotate(360deg);
+}

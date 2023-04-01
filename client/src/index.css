@@ -1,0 +1,236 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+ */
+ @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+ :root {
+   --font-family:'Josefin Sans', sans-serif;
+   --dark-blue: #0a1930;
+   --light-blue: #1f93ff;
+ 
+   --color-white: #fff;
+   --dark-text: #333;
+   --form-button: #2da5ff;
+   --color-grey: #eae6eb;
+   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+ }
+ 
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   scroll-behavior: smooth;
+ }
+ 
+ html {
+   font-size: 10px;
+ }
+ 
+ body {
+   font-family: var(--font-family);
+ }
+ 
+ /* section {
+   width: 100%;
+   padding: 8rem 0;
+ } */
+ 
+ .container {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 0 20px;
+ }
+ 
+ /* Text Styles */
+ .u-text-small{
+   font-size: 1.3rem;
+   line-height: 1.4;
+   font-weight: 300;
+ }
+ 
+ .u-text-light{
+   color: beige;
+ }
+ 
+ .u-text-dark{
+  color:  #1b5870;
+ }
+
+
+/* Signup and Login styling */
+.mytext{
+  margin-left: -10;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 400;
+  color: beige;
+}
+
+.text_email_password{
+  margin-left: -10;
+  display: flex;
+  font-size: 2rem;
+  margin:1rem 55rem;
+  padding:1rem;
+  align-items: center;
+  flex-direction: column;
+  /* border-radius: 15; */
+}
+
+ /* Homepage styling */
+ #header{
+  position: relative;
+}
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.header-bg{
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background: #012d3b;
+}
+
+.header h1{
+  font-size: 3.3rem;
+  font-weight: 800;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: beige;
+  position: relative;
+  padding: 8rem;
+}
+
+.header h1 span{
+  display: block;
+  margin-left: -15rem;
+}
+
+h1 span:nth-child(2),
+h1 span:nth-child(3){
+  font-weight: 100;
+}
+
+.header h1::after{
+  content:'';
+  margin: -3rem 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 70%;
+  height: 1px;
+  margin-left: -10rem;
+  background: beige; 
+}
+
+.header-left p{
+  margin: 7rem 0;
+  margin-left: -7rem;
+  width: 80%;
+}
+
+.header-right img{
+  width:90%;
+}
+.header-cta{
+  margin-left: -12rem;
+}
+.sec_heading{
+  margin-left: 1rem;
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-style: 1px;
+  /* font-style: underline; */
+  font-size: 1.5rem;
+  text-transform: none;
+  font-weight: 1;
+}
+.third_heading{
+  margin-left: -15rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 1;
+}
+
+.floating-icon{
+  width: 5rem;
+  height: 5rem;
+  background: rgb(3, 3, 65);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left:50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.floating-icon a{
+  border: 2px solid beige;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* .mouse{
+  transform: translateY(-25%);
+  animation: bounce .9s ease infinite alternate;
+}
+
+@keyframes bounce {
+  0%{
+      transform: translateY(-25%);
+  }
+  100%{
+      transform: translateY(25%);
+  } 
+} */
+@media screen and (max-width:769px) {
+
+  /* for homepage */
+ .header{
+  margin-left: 12rem;
+ }
+ .header h1{
+  margin-left: 12rem;
+  font-size: 2.5rem;
+ }
+ .sec_heading{
+  font-size: 1;
+  margin-left: -15rem;
+ }
+ .third_heading{
+  margin-left: -20rem;
+ }
+
+ /* for Signup and login */
+ .mytext{
+  margin-left: -20;
+  font-size: 4rem;
+ }
+ .text_email_password{
+  margin-left: -20;
+  font-size: 3;
+ }
+
+}

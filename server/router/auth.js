@@ -1,0 +1,181 @@
+const jwt=require("jsonwebtoken")
+const express =require('express');
+const bcrypt=require('bcryptjs');
+const router=express.Router();
+router.use(express.json());
+const authenticate=require("../middleware/authenticate");
+const fs = require("fs");
+
+
+const User =require("../model/userSchema");
+const Question=require('../model/questionSchema');
+
+router.get('/',(req,res)=>{
+    res.send('Hello world from the server router.js');
+});
+
+// router.post('/log-question', (req, res) => {
+//   const { questionId } = req.body;
+//   console.log(`Received question ID: ${questionId}`);
+//   // TODO: Log the question ID somewhere (e.g. in a database or log file)
+//   res.sendStatus(200);
+// });
+  
+
+
+router.post('/log-question', async (req, res) => {
+  const { questionId,userid } = req.body;
+  console.log(`Received question ID: ${questionId}`);
+  try {
+    const filename = `./logs/${userid}.log`;
+    const logData = `Question ID: ${questionId}\n`;
+    fs.appendFile(filename, logData, (err) => {
+      if (err) throw err;
+      console.log(`Question ID ${questionId} added to ${filename}`);
+    });
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+  
+router.post('/register',async(req,res)=>{
+
+    const {name,email,phone,work,password,cpassword}=req.body;
+
+    if(!name|| !email||!phone||!work||!password||!cpassword ){
+        return res.status(422).json({error:"Plz fill the empty field"});
+    }
+
+    try{
+
+        const UserExist=await User.findOne({email:email});
+
+        if(UserExist){
+            return res.status(422).json({error:"Email already exists"});
+        }
+        else if(password!=cpassword){
+            return res.status(422).json({error:"Password Doesnot Match"});
+
+        }else{
+
+            const user=new User({name,email,phone,work,password,cpassword});
+            await user.save();
+            res.status(201).json({message:"User registred successfully"});
+            }
+
+
+    } catch(err){
+        console.log(err);
+    }
+
+
+    // console.log(name);
+    // console.log(email);
+    //res.json({message:req.body});
+    
+});
+
+
+
+
+
+router.post('/admin',async(req,res)=>{
+    const {question,tags,answer}=req.body;
+   
+    if(!question){
+        return res.status(422).json({error:"Plz fill the empty field"});
+    }
+    try{
+
+        
+        const userquestion=new Question({question,tags,answer});
+        await userquestion.save();
+        res.status(201).json({message:"Question registred successfully"});
+
+
+    } catch(err){
+        console.log(err);
+    }
+    //res.send('Hello world from the server');
+});
+
+//Interview page
+router.get('/interviewpage',(req,res)=>{
+    Question.find((err,data)=>{
+        if(err){
+            res.status(500).send(err);
+        }else{
+            res.status(200).send(data)
+            console.log(data);
+        }
+    });
+});
+
+router.post('/signin',async(req,res)=>{
+
+  try{
+
+      const {email,password}=req.body;
+      if(!email || !password){
+          return res.status(400).json({error:"Please Fill the data"});
+      }
+
+      const userLogin=await User.findOne({email:email}); //This will give is the whole document from the database
+      
+      if(userLogin){//email check
+          const isMatch=await bcrypt.compare(password,userLogin.password);
+          const token=await userLogin.generateAuthToken();
+          console.log(token);
+          res.cookie("jwtoken",token,{
+              expires:new Date(Date.now()+258920000000),
+              httpOnly:true
+          });
+          res.header('Authorization', 'Bearer ' + token).json({message:"user Signin Successfully",user:userLogin});
+      
+      console.log(userLogin);
+      if(!isMatch){ //[pasword check]
+          res.status(400).json({error:"Invalid Credentials"});
+      }
+      else
+      {
+      const filename = "./logs/" + userLogin._id + ".log";
+      const data = "Hello, world!";
+
+      if (fs.existsSync(filename)) {
+        console.log(`${filename} already exists.`);
+      } else {
+        // Create new file and write data to it
+        fs.writeFile(filename, data, (err) => {
+          if (err) throw err;
+          console.log(`${filename} created and data written successfully.`);
+        });
+      }
+
+          res.json({message:"user Signin Successfully"});
+      }
+      } else{
+          res.status(400).json({error:"Invalid Credentials"});
+      }
+      
+      
+
+
+  } catch (err){
+      console.log(err);
+  }
+});
+  
+
+
+
+
+//Dropdown page
+// router.get('/about',authenticate,(req,res)=>{
+//     res.send(req.rootUser);
+// });
+
+module.exports=router;

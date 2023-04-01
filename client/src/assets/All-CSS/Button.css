@@ -1,0 +1,26 @@
+a {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: beige;
+    text-decoration: underline;
+    margin-right: 1rem;
+}
+a:hover {
+    color: #1b5870;
+}
+a.btn {
+    border-radius: 5px;
+    /* margin-left: 1rem; */
+    font-weight: 500;
+    text-decoration: none;
+    padding: 5px 8px;
+}  
+a.btn-dark {
+    border: 2px solid beige;
+    background: transparent;
+}  
+a.btn-blue {
+    border: 2px solid transparent;
+    background: #1b5870;
+    color: beige;
+}
