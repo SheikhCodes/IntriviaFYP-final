@@ -25,10 +25,16 @@ const Interviewsession = () => {
       setQuestions(shuffledQuestions.slice(0, 5)); // Select first 5 questions from shuffled array
       setCurrentQuestionId(shuffledQuestions.length > 0 ? shuffledQuestions[0]._id : null); // Set currentQuestionId to ID of first question
       console.log('Questions', shuffledQuestions);
+     
+
     };
     fetchData();
   }, []);
   
+  
+
+
+
 
   useEffect(() => {
     if (questions.length > 0) {
@@ -61,6 +67,10 @@ const Interviewsession = () => {
       console.log(currentQuestionId)
       // Send current question ID to server
       await axios.post('/log-question', { questionId: currentQuestionId,userid });
+      console.log(userid)
+      await axios.post(`/questions/${userid}`);
+
+      
     
     }
     setCurrentQuestionId(questions[currentQuiz + 1]?._id || null); // Set currentQuestionId to ID of next question
@@ -68,6 +78,10 @@ const Interviewsession = () => {
     setIsSessionCompleted(currentQuiz + 1 >= questions.length);
     setShowAnswerTextArea(false); // Hide the answer textarea after submitting the answer
     setsubmitbutton(false);
+
+
+  
+
   };
   
 

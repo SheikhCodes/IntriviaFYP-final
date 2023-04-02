@@ -10,6 +10,8 @@ const fs = require("fs");
 const User =require("../model/userSchema");
 const Question=require('../model/questionSchema');
 
+const questionIds = []; // global variable to store question ids
+
 router.get('/',(req,res)=>{
     res.send('Hello world from the server router.js');
 });
@@ -22,6 +24,39 @@ router.get('/',(req,res)=>{
 // });
   
 
+
+router.post('/questions/:userid', async (req, res) => {
+    const { userid } = req.params;
+  
+    try {
+        if (questionIds.length > 0) {
+          questionIds.length = 0; // Clear the questionIds array if it is not empty
+        }
+      const filename = `./logs/${userid}.log`;
+      const logData = await fs.promises.readFile(filename, "utf-8");
+      const ids = logData
+        .split("\n")
+        .filter((line) => line.startsWith("Question ID:"))
+        .map((line) => line.replace("Question ID: ", ""));
+
+
+     // console.log(questionIds)  
+      questionIds.push(...ids); // add new ids to global variable
+      console.log(`Added question IDs: ${ids}`);
+      console.log(questionIds)
+      
+
+      
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+
+router.get('/question-ids', (req, res) => {
+    
+    res.status(200).send({ questionIds });
+  });  
 
 router.post('/log-question', async (req, res) => {
   const { questionId,userid } = req.body;
@@ -71,11 +106,6 @@ router.post('/register',async(req,res)=>{
     } catch(err){
         console.log(err);
     }
-
-
-    // console.log(name);
-    // console.log(email);
-    //res.json({message:req.body});
     
 });
 
@@ -134,7 +164,6 @@ router.post('/signin',async(req,res)=>{
               expires:new Date(Date.now()+258920000000),
               httpOnly:true
           });
-          res.header('Authorization', 'Bearer ' + token).json({message:"user Signin Successfully",user:userLogin});
       
       console.log(userLogin);
       if(!isMatch){ //[pasword check]
@@ -143,16 +172,13 @@ router.post('/signin',async(req,res)=>{
       else
       {
       const filename = "./logs/" + userLogin._id + ".log";
-      const data = "Hello, world!";
+      //const data = "Hello, world!";
 
       if (fs.existsSync(filename)) {
         console.log(`${filename} already exists.`);
       } else {
         // Create new file and write data to it
-        fs.writeFile(filename, data, (err) => {
-          if (err) throw err;
-          console.log(`${filename} created and data written successfully.`);
-        });
+        console.log(`${filename} created`);
       }
 
           res.json({message:"user Signin Successfully"});
