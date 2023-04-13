@@ -1,0 +1,82 @@
+.reportUI{
+    background-color: #ccdbfd;
+    min-height: 100vh;
+    min-width: 90vw; 
+    /* position: relative; */
+}
+
+.headerreport{
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    padding-top: 40px ;
+}
+
+
+.finalscore{
+    margin-top: 150px;
+    font-weight: bold;
+    font-size: 50px;
+    padding-bottom: 10px;
+}
+.reportContainer{
+
+    text-align: center;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    background-color:#a9d6e5;
+    border:1px solid black;
+    border-radius: 40px;
+    /* height:1500px ; */
+    /* position:absolute;
+    top:35px;
+    left: 550px;
+    padding: 20px;
+    background-color:#a9d6e5;
+    width: 700px;
+    height: 2280px;
+    border:1px solid black;
+    border-radius: 40px;
+    text-align: center;
+    transition: height 2s linear 0.1s; */
+}
+
+.question{
+    margin: 15px;
+    background-color: #89c2d9;
+    border-radius: 40px;
+    padding:10px 3px 3px 10px;
+}
+#questionno{
+    font-weight: bold;
+}
+
+#score{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.certificate{
+    position: absolute;
+    top: 950px;
+    left: 1300px;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: blue;
+}
+
+.certificate:hover{
+    background-color: darkblue;
+}
+
+.improvement
+{
+    font-size: 30px;
+    font-weight: bold;
+}
+#improvementlist{
+    font-size: 20px;
+}

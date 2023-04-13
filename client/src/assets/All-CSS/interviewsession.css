@@ -16,7 +16,7 @@
     height: 370px;
     border:1px solid black;
     border-radius: 20px;
-    transition: height 2s linear 0.1s;
+    /* transition: height 2s linear 0.1s; */
 }
 
 .interviewcontainerSessionDone{
@@ -37,7 +37,7 @@
 }
 #Question{
     font-size: 25px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     border-bottom: 1px solid black;
 }
 
@@ -61,11 +61,11 @@
 }
 #typeanswer{
     font-size: 15px;
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px;
     color: white;
     background-color: blue;
-    width: 150px;
+    width: 100px;
     height: 50px;
     /* width: 80px;
     height: 80px; */
@@ -107,7 +107,7 @@
     font-size: 15px;
     padding: 10px;
     border-radius: 10px;
-    margin-left: 350px;
+    margin-left: 390px;
     background-color: white;
     border:1px solid #3a0ca3;
     color: #3a0ca3;
@@ -127,9 +127,9 @@
     transition:opacity 1s linear 1.5s;
 }
 #Done{
+    margin-top: 5px;
     margin-left: 3px;
     font-weight: bold;
-    /* visibility: hidden; */
     font-size: 15px;
     padding: 4px;
     width: 100px;
@@ -137,7 +137,6 @@
     border-radius: 10px;
     margin-right: 10px;
     background-color: white;
-    /* opacity: 0; */
     transition:opacity 1s linear 1.5s;
 
 }
@@ -269,3 +268,37 @@
       background-color:darkgrey ;
   }
 }
+
+
+
+.success-animation {
+    position: fixed;
+    top: 20%;
+    left: 38%;
+    /* transform: translate(-50%, -50%); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: darkcyan;
+    color: #fff;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 20px;
+    animation: success-animation 2s ease-in-out;
+  }
+  
+  @keyframes success-animation {
+    0% {
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
