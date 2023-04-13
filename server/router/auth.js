@@ -171,7 +171,7 @@ router.post('/signin',async(req,res)=>{
       }
       else
       {
-      const filename = "./logs/" + userLogin._id + ".log";
+      const filename = "../logs/" + userLogin._id + ".log";
       //const data = "Hello, world!";
 
       if (fs.existsSync(filename)) {
@@ -181,7 +181,11 @@ router.post('/signin',async(req,res)=>{
         console.log(`${filename} created`);
       }
 
-          res.json({message:"user Signin Successfully"});
+          res.json({message:"user Signin Successfully",
+          data:userLogin
+
+        });
+
       }
       } else{
           res.status(400).json({error:"Invalid Credentials"});
