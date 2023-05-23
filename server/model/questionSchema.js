@@ -13,6 +13,9 @@ const questionSchema =new mongoose.Schema({
     },
     answer: {
         type: String
+    },
+    level: {
+        type: Number
     }
     
 

@@ -114,7 +114,7 @@ router.post('/register',async(req,res)=>{
 
 
 router.post('/admin',async(req,res)=>{
-    const {question,tags,answer}=req.body;
+    const {question,tags,answer,level}=req.body;
    
     if(!question){
         return res.status(422).json({error:"Plz fill the empty field"});
@@ -122,7 +122,7 @@ router.post('/admin',async(req,res)=>{
     try{
 
         
-        const userquestion=new Question({question,tags,answer});
+        const userquestion=new Question({question,tags,answer,level});
         await userquestion.save();
         res.status(201).json({message:"Question registred successfully"});
 

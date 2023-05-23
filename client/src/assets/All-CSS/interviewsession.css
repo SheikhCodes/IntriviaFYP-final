@@ -3,6 +3,8 @@
     min-height: 89vh;
     min-width: 90vw; 
     position: relative;
+    /* -webkit-user-select: none; 
+    user-select: none;  */
 }
 
 .interviewcontainer{
@@ -65,12 +67,22 @@
     border-radius: 10px;
     color: white;
     background-color: blue;
-    width: 100px;
+    width: 200px;
     height: 50px;
     /* width: 80px;
     height: 80px; */
 }
+#askme{
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    background-color: blue;
+    width: 200px;
+    height: 50px;
+    margin-left: 10px;
 
+}
 .reportbtn{
     margin-top: 10px;
     font-size: 15px;
@@ -101,6 +113,9 @@
     background-color: darkblue;
 }
 #typeanswer:hover{
+    background-color: darkblue;
+}
+#askme:hover{
     background-color: darkblue;
 }
 #next{
@@ -274,7 +289,7 @@
 .success-animation {
     position: fixed;
     top: 20%;
-    left: 38%;
+    left: 36.5%;
     /* transform: translate(-50%, -50%); */
     display: flex;
     justify-content: center;
