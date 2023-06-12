@@ -1,8 +1,10 @@
 import React from "react";
-import "../../assets/All-CSS/dropdown.css";
+import "./dropdown.css";
 import { useState, useEffect } from "react";
-import iconimg from "./HR.png";
+import iconimg from "../../assets/HR.png";
 import { useNavigate } from "react-router-dom";
+import {motion} from 'framer-motion'
+import { fadeIn, slideIn, staggerContainer, textVariant2,textVariant } from '../../utils/motion';
 
 export const DROPDOWN_OPTIONS = ["C++", "Javascript", "Python"];
 const Dropdown = () => {
@@ -21,15 +23,9 @@ const Dropdown = () => {
   return (
     <section className="dropdownpage">
       <div className="dropdown">
-        {/* options={DROPDOWN_OPTIONS}
-      selectedoption={selectedoption}
-      setSelected={setSelected}
-      label={"Which langauge would you like to choose for the interview"} */}
-        {/* <h1>Welcome</h1>
-          <h2>Sheikh Zohaib</h2> */}
-        <div className="image-division">
-          <img src={iconimg} className="image" alt="img" />
-        </div>
+        <motion.div className="image-division">
+          <motion.img variants={slideIn('right', 'tween', 0.2, 1)} src={iconimg} className="image" alt="img" />
+        </motion.div>
 
         <div className="heading">
           Kindly select the programming language for the interview

@@ -5,14 +5,14 @@ justify-content: center;
 align-items: center;
 min-height: 90vh;
 min-width: 90vw; 
-background-color:#ccdbfd ;
+background: linear-gradient(to bottom, #ccdbfd, #7f96ca);
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .heading{
     font-size: 28px;
     font-weight: 600;
-    color:black;
+    color:rgb(75, 67, 67);
     margin-bottom: 32px;
 }
 
@@ -82,13 +82,15 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 .common-button{
     padding: 1rem 2rem;
+    font-weight: 700;
+    font-size: 20px;
     border-radius: 8px;
-    background-color:#25829e;
+    background-color:#5782e6;
     margin-right: 2rem;
     color: #fff;
 }
 .common-button:hover{
-    background-color: rgb(8, 90, 125);
+    background-color: #3467df
 }
 
 .image-division{

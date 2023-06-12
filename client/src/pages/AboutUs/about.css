@@ -1,6 +1,7 @@
 .mainsection{
-    background-color:#ccdbfd ;
+    background: linear-gradient(to bottom, #ccdbfd, #798fc0);
     color: black;
+    overflow: hidden;
 }
 .section-thirdd{
     width: 100%;

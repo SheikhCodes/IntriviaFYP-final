@@ -1,12 +1,14 @@
-import React, { useEffect, useState,FontAwesomeIcon } from "react";
+import React, { useEffect, useState, FontAwesomeIcon } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import logimage from "../assets/log.svg";
-import "../assets/All-CSS/mystyle.css";
+import logimage from "../../assets/log.svg";
+import "./mystyle.css";
+import Navbar from "../../components/Navbar/Navbar";
 
-const Login = () => {
+const Login = ({setLoggedIn}) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   //const [showAnimation, setShowAnimation] = useState(false);
 
   const loginUser = async (e) => {
@@ -28,28 +30,21 @@ const Login = () => {
     if (res.status === 400 || !data) {
       window.alert("Invalid Credentials");
     } else {
-      //setShowAnimation(true); // show the animation
       window.alert("Login Successfull");
       navigate("/dropdown");
-      console.log(data.data._id)
+      //console.log(data.data._id);
+      
       localStorage.setItem("userid", data.data._id);
       localStorage.setItem("username", data.data.name);
-      // setTimeout(() => {
-      //   setShowAnimation(false); // hide the animation after 3 seconds
-      // }, 3000);
-      //localStorage.setItem("userid", data.user._id);
+      setLoggedIn(true)
     }
   };
+  
 
   return (
     <div>
+     
       <div className="mycontainer">
-      {/* {showAnimation && ( // render the animation if showAnimation is true
-          <div className="success-animation">
-            <p>You have been successfully signed in!</p>
-            <FontAwesomeIcon icon="fa-solid fa-circle-check" />
-          </div>
-        )} */}
         <div className="forms-container">
           <div className="signin-signup">
             <form method="POST" className="sign-in-form" id="signIn">

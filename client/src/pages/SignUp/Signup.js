@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-// import pix from "../../Used Images/RegistrationImage.jpeg";
 import axios from "axios";
 import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-// import "../../src/index.css"
-//import { useHistory } from "react-router-dom";
-import regimage from "../assets/register.svg";
+import regimage from "../../assets/register.svg";
 
 const Signup = () => {
   const navigate = useNavigate();

@@ -1,9 +1,10 @@
-import "../assets/All-CSS/report.css";
+import "./report.css";
 import React, { useState, useRef, useEffect } from "react";
-
-import certificatePNG from "../assets/cert.png";
-
+import {motion} from 'framer-motion'
+import { fadeIn, slideIn, staggerContainer, textVariant2,textVariant } from '../../utils/motion';
+import certificatePNG from "../../assets/cert.png";
 export const Report = ({ questions, scores, answers }) => {
+  const [overallscore, setoverallscore] = useState(0);
   const topics = [
     "arrays and strings",
     "classes and objects",
@@ -77,6 +78,8 @@ export const Report = ({ questions, scores, answers }) => {
   const overallScore = (
     scores.reduce((acc, curr) => acc + curr, 0) / scores.length
   ).toFixed(1);
+  setoverallscore(overallScore)
+  localStorage.setItem("overallscore", overallscore);
   const shouldDisplayButton = overallScore > 6;
 
   const result = []; // Initialize an empty array to store the topics
@@ -97,11 +100,14 @@ export const Report = ({ questions, scores, answers }) => {
   });
 
   return (
-    <section className="reportUI">
+    <motion.section variants={staggerContainer}
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: false, amount: 0.25 }} className="reportUI">
       <div className="headerreport">Interview Report</div>
       <div className="reportContainer">
         {questions.map((q, index) => (
-          <div key={index} className="question">
+          <motion.div key={index} variants={fadeIn('right','spring',index *0.5)} className="question">
             <h2 id="questionno">Question {index + 1}</h2>
             <h3>{q.question}</h3>
             <h2>
@@ -113,13 +119,16 @@ export const Report = ({ questions, scores, answers }) => {
             </h2>
             <h3>{answers[index]?.userAnswer || "-"}</h3>
             <h3 id="score">Score: {scores[index]} / 10</h3>
-          </div>
+          </motion.div>
         ))}
-        <div className="finalscore">
+        
+       
+      </div>
+      <motion.div variants={textVariant(1.1)} className="finalscore">
           Overall Score: {overallScore}
           {shouldDisplayButton && (
             <>
-              <h2>Congratulations! You are qualified for the certificate!</h2>
+              <motion.div variants={textVariant(1.2)} className="report-sorry">Congratulations! You are qualified for the certificate!</motion.div>
               <button className="certificate" onClick={downloadCertificate}>
                 Download Certificate
               </button>
@@ -127,25 +136,23 @@ export const Report = ({ questions, scores, answers }) => {
           )
           }
          {overallScore <= 6 && (
-            <h2>Sorry! You didn't Qualify for the certificate!</h2>
+            <motion.div variants={textVariant(1.2)} className="report-sorry">Sorry! You didn't Qualify for the certificate!</motion.div>
           )}
-        </div>
-        <div className="improvement">
+        </motion.div>
+        <motion.div variants={textVariant(1.3)} className="improvement">
           {result.length > 0 && (
             <>
               Improvement Areas:
-              <ul>
+              <ul className="report-improvement-list">
                 {result.map((result, index) => (
                   <li id="improvementlist" key={index}>
-                    <ol>{result}</ol>
+                    <ol>You need to learn concepts of {result} in C++.</ol>
                   </li>
                 ))}
               </ul>
             </>
           )}
-        </div>
-       
-      </div>
+        </motion.div>
       <div style={{ display: "none" }}>
         {certificate && (
           <canvas
@@ -156,6 +163,6 @@ export const Report = ({ questions, scores, answers }) => {
         )}
       </div>
       
-    </section>
+    </motion.section>
   );
 };

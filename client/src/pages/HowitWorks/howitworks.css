@@ -3,7 +3,10 @@
     height:90rem;
     padding: 3rem 20rem;
     color: black;
-    background-color:#ccdbfd ;
+    background: linear-gradient(to bottom, #ccdbfd, #7f96ca);
+    overflow-x: hidden;
+
+
 }
 
 .section-third h2{

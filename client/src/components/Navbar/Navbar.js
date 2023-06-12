@@ -1,67 +1,112 @@
-import React from 'react'
-import "../../App.css"
-import 'bootstrap/dist/css/bootstrap.css'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from "react";
+import "../../App.css";
 import logo from "../../assets/blackLogo.png";
-import {NavDropdown,Nav,Container} from "react-bootstrap";
-import{LinkContainer} from "react-router-bootstrap";
+import heading from "../../assets/nav-logo1.png";
+import { useNavigate } from "react-router-dom";
+import { BiUserCircle } from "react-icons/bi";
+import {motion} from 'framer-motion'
+import { fadeIn, slideIn, staggerContainer, textVariant2,textVariant } from '../../utils/motion';
+import "./Navbar.css";
 
-import heading from "../../assets/tickLogo.png";
-import{useDispatch,useSelector} from 'react-redux';
 
+const Navbar = ({ loggedIn, handleLogout }) => {
+  const navigate = useNavigate();
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-const Navbar = () => {
-  // const userLogin=useSelector(state=>state.userLogin)
-  // const {users}=userLogin
-  // const dispatch=useDispatch()
+  const handleLogoutClick = () => {
+    handleLogout(); // Call the logout function passed as a prop
+  };
 
-  // const logouthandler=()=>{
-  //   console.log("logout");
-  // }
+  const viewProfileHandler = () => {
+    navigate("/viewprofile");
+    // Logic for viewing the user profile
+  };
+
+  const settingsHandler = () => {
+    // Logic for navigating to the user settings
+  };
+
+  const toggleProfileDropdown = () => {
+    setIsProfileOpen(!isProfileOpen);
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
 
   return (
     <>
-      <nav   className="navbar color-nav navbar-expand-lg" >
-  <NavLink id='headingdecor' className="navbar-brand" to="#">
-    <img id='seticon' src={logo} alt='logo' ></img>
-    <img id='setlogo' src={heading} alt='heading'></img>    
-  </NavLink>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
+      <motion.nav variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }} className="navbar color-nav">
+        <motion.div variants={slideIn('left', 'tween', 0.2, 1)} className="nav-logo" id="headingdecor">
+          <img id="seticon" src={logo} alt="logo" />
+          <img id="setlogo" src={heading} alt="heading" />
+        </motion.div>
 
-  <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul className="navbar-nav ml-auto">
-      <li className="nav-item active">
-        <NavLink id='navitems' className="nav-link" to="/">Home <span className="sr-only">(current)</span></NavLink>
-      </li>
-      <li className="nav-item">
-        <NavLink id='navitems' className="nav-link" to="/aboutus">About us</NavLink>
-      </li>
-      
-      <li className="nav-item">
-        <NavLink id='navitems' className="nav-link" to="/howitworks">How it works</NavLink>
-      </li>
-      
+        <motion.div variants={slideIn('right', 'tween', 0.2, 1)} className="navbar-wrapper">
+          <ul className="navbar-wrapper-items">
+            <li
+              className="navbar-wrapper-item"
+              onClick={() => handleNavigation("/")}
+            >
+              HOME
+            </li>
+            <li
+              className="navbar-wrapper-item"
+              onClick={() => handleNavigation("/aboutus")}
+            >
+              ABOUT
+            </li>
+            
+            <li
+              className="navbar-wrapper-item"
+              onClick={() => handleNavigation("/howitworks")}
+            >
+              HOW IT WORKS
+            </li>
+            <div className="navbar-partition"></div>
 
-      <li className="nav-item">
-        <NavLink id='navitems' className="nav-link" to="/login">Login</NavLink>
-      </li>
-   
+            {loggedIn ? (
+              <li className="navbar-wrapper-item">
+                <div className="profile-dropdown">
+                  <BiUserCircle
+                    size={34}
+                    className="dropdown-toggle"
+                    onClick={toggleProfileDropdown}
+                  />
+                  {isProfileOpen && (
+                    <ul className={`dropdown-menu ${isProfileOpen ? "show" : ""}`}>
+                      <li onClick={viewProfileHandler}>View Profile</li>
+                      <li onClick={settingsHandler}>Settings</li>
+                      <li onClick={handleLogoutClick}>Logout</li>
+                    </ul>
+                  )}
+                </div>
+              </li>
+            ) : (
+              <>
+                <li
+                  className="navbar-wrapper-item"
+                  onClick={() => handleNavigation("/login")}
+                >
+                  LOGIN
+                </li>
 
-      <li className="nav-item">
-      <NavLink id='navitems' className="nav-link" to="/signup">Sign up</NavLink>
-    </li>
-    {/* <li className="nav-item">
-      <NavLink id='navitems' className="nav-link" to="/interviewsession">Interview</NavLink>
-    </li> */}
-    {/* <li className="nav-item">
-      <NavLink className="nav-link" to="/dropdown">DropDown</NavLink>
-    </li> */}
-    </ul>
-  </div>
-</nav>
+                <li
+                  className="navbar-wrapper-item"
+                  onClick={() => handleNavigation("/signup")}
+                >
+                  REGISTER
+                </li>
+              </>
+            )}
+          </ul>
+        </motion.div>
+      </motion.nav>
     </>
-  )
-}
+  );
+};
+
 export default Navbar;

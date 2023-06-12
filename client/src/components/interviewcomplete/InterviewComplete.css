@@ -1,0 +1,55 @@
+.interview-complete-wrapper{
+    background: linear-gradient(to bottom, #ccdbfd, #7f96ca);
+    width: 100%;
+    height: 90vh;
+}
+
+.interview-complete-inner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.interview-complete-title{
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+
+.interview-complete-report{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(44, 37, 37);
+    padding:15px 20px;
+    margin-right: 10px;
+    border: 3px solid #8ba6e7;
+    border-radius: 20px;
+    background-color:#6a88ce ;
+}
+
+.interview-complete-retake{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(44, 36, 36);
+    padding:15px 20px;
+    margin-right: 10px;
+    border: 3px solid #8ba6e7;
+    border-radius: 20px;
+    background-color:#6a88ce ;
+    cursor: pointer;
+}
+
+.interview-complete-report:hover,
+.interview-complete-retake:hover{
+    background-color:#3b61bb ;
+}
+
+.interview-complete-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
